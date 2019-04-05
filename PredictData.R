@@ -32,3 +32,12 @@ ggplot(data = data.table(Threshold = seq(from = 0.01, to = 1, by = 0.01),
 naiveBayesModel <- e1071::naiveBayes(formula = fraud ~ ., data = trainData)
 trainPrediction <- predict(naiveBayesModel, newdata = trainData, type = "raw")[, 2]
 testPrediction <- predict(naiveBayesModel, newdata = testData, type = "raw")[, 2]
+
+# Decision tree [rpart]
+rpartModel <- rpart::rpart(formula = fraud ~ ., data = trainData, method = "class",
+    control = list(cp = 0.05))
+trainPrediction <- predict(rpartModel, newdata = trainData, type = "prob")[, 2]
+testPrediction <- predict(rpartModel, newdata = testData, type = "prob")[, 2]
+
+rpartModel$variable.importance
+rpart.plot::rpart.plot(rpartModel)
