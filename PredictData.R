@@ -41,3 +41,11 @@ testPrediction <- predict(rpartModel, newdata = testData, type = "prob")[, 2]
 
 rpartModel$variable.importance
 rpart.plot::rpart.plot(rpartModel)
+
+# Random forest [ranger]
+rfModel <- ranger::ranger(formula = fraud ~ ., num.trees = 50, verbose = TRUE,
+    data = trainData, probability = TRUE, importance = "impurity", seed = 25)
+trainPrediction <- predict(rfModel, data = trainData, type = "response")$predictions[, 2]
+testPrediction <- predict(rfModel, data = testData, type = "response")$predictions[, 2]
+
+ranger::importance(rfModel)
