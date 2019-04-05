@@ -49,3 +49,23 @@ trainPrediction <- predict(rfModel, data = trainData, type = "response")$predict
 testPrediction <- predict(rfModel, data = testData, type = "response")$predictions[, 2]
 
 ranger::importance(rfModel)
+
+# Boosted trees [xgboost]
+xgbTrainPredictors <- Matrix::sparse.model.matrix(~ ., data = trainData[, -"fraud"])[, -1]
+xgbTrainData <- xgboost::xgb.DMatrix(data = xgbTrainPredictors, label = trainData$fraud)
+xgbTestPredictors <- Matrix::sparse.model.matrix(~ ., data = testData[, -"fraud"])[, -1]
+xgbTestData <- xgboost::xgb.DMatrix(data = xgbTestPredictors, label = testData$fraud)
+xgbModel <- xgboost::xgb.train(data = xgbTrainData, nrounds = 100, verbose = 2,
+    watchlist = list(train = xgbTrainData, test = xgbTestData),
+    params = list(objective = "binary:logistic", eval_metric = xgbDMCScore, nthread = 4))
+trainPrediction <- predict(xgbModel, newdata = xgbTrainPredictors)
+testPrediction <- predict(xgbModel, newdata = xgbTestPredictors)
+
+ggplot(data = melt(data = xgbModel$evaluation_log, id.vars = "iter")) +
+  geom_line(aes(x = iter, y = value, color = variable)) + ylab("DMC score")
+xgbImportanceMatrix <- xgboost::xgb.importance(model = xgbModel)
+xgboost::xgb.ggplot.importance(importance_matrix = xgbImportanceMatrix)
+xgboost::xgb.plot.shap(data = xgbTrainPredictors, model = xgbModel, top_n = 2)
+xgboost::xgb.plot.tree(model = xgbModel, trees = 0:2)
+xgboost::xgb.plot.multi.trees(model = xgbModel) # all trees merged in one
+xgboost::xgb.ggplot.deepness(model = xgbModel) # model complexity
