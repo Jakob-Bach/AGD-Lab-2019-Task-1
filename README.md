@@ -18,3 +18,11 @@ No special R packages are required.
 ## Baseline Submission
 
 `CreateBaselineSubmission.R` reads all test data split files from a directory and creates valid submission files by predicting `O` for each test object.
+
+## Advanced Submission
+
+`CreateAdvancedSubmission.R` demonstrates a realistic (yet simple) prediction pipeline creating a valid submission.
+Currently this involves:
+- feature creation
+- `xgboost` with default parameters (only number of rounds = trees has to be set by hand)
+- threshold-moving to set prediction threshold based on DMC scoring function

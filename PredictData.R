@@ -1,6 +1,7 @@
 source("UtilityFunctions.R")
 
 library(data.table)
+library(ggplot2)
 
 dmcTrainData <- data.table(read.csv("data/train.csv", sep = "|", quote = ""))
 
