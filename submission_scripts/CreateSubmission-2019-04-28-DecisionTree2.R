@@ -4,7 +4,8 @@ library(data.table)
 source("UtilityFunctions.R")
 
 inputPath <- "data/"
-outputPath <- paste0("../Submissions/2019-04-14/Slytherin/")
+dateString <- "2019-04-28"
+outputPath <- paste0("../Submissions/", dateString, "/Slytherin/")
 
 if (!dir.exists(outputPath)) {
   dir.create(outputPath, showWarnings = FALSE, recursive = TRUE)
@@ -22,7 +23,7 @@ for (inputTestFile in list.files(inputPath, pattern = "split-test-[0-9]+\\.csv",
   xgbTrainPredictors <- Matrix::sparse.model.matrix(~ ., data = trainData[, -"fraud"])[, -1]
   xgbTrainData <- xgboost::xgb.DMatrix(data = xgbTrainPredictors, label = trainData$fraud)
   xgbTestPredictors <- Matrix::sparse.model.matrix(~ ., data = testData)[, -1]
-  xgbModel <- xgboost::xgb.train(data = xgbTrainData, nrounds = 50,
+  xgbModel <- xgboost::xgb.train(data = xgbTrainData, nrounds = 1,
       params = list(objective = "binary:logistic", nthread = 4))
   
   # Predict
@@ -35,6 +36,6 @@ for (inputTestFile in list.files(inputPath, pattern = "split-test-[0-9]+\\.csv",
   
   # Write solution
   seedString <- regmatches(inputTestFile, regexpr("[0-9]+.csv$", inputTestFile))
-  write.csv(solution, file = paste0(outputPath, "Slytherin-2019-04-14-prediction-", seedString),
+  write.csv(solution, file = paste0(outputPath, "Slytherin-", dateString, "-prediction-", seedString),
             row.names = FALSE, quote = FALSE)
 }

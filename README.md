@@ -15,14 +15,11 @@ The path to the prediction files has to be set for each scoring procedure (team 
 If the naming scheme of the prediction files or the path/naming scheme of the ground truth (as defined in `SplitForStudents.R`) changes, further adaptations might be necessary.
 No special R packages are required.
 
-## Baseline Submission
+## Slytherin submissions
 
-`CreateBaselineSubmission.R` reads all test data split files from a directory and creates valid submission files by predicting `O` for each test object.
+Code to reproduce Slytherin submission scores - as presented in the joint meetings - can be found in the directory `submission_scrips/`.
 
-## Advanced Submission
-
-`CreateAdvancedSubmission.R` demonstrates a realistic (yet simple) prediction pipeline creating a valid submission.
-Currently this involves:
-- feature creation
-- `xgboost` with default parameters (only number of rounds = trees has to be set by hand)
-- threshold-moving to set prediction threshold based on DMC scoring function
+- `CreateSubmission-2019-04-14-Baseline.R`: predict `0` (majority and less costly class) for each test object
+- `CreateSubmission-2019-04-21-DecisionTree.R`: feature creation, untuned `rpart`, threshold moving based on DMC score
+- `CreateSubmission-2019-04-28-DecisionTree2.R`: feature creation, untuned `xgboost` with 1 tree, threshold moving
+- `CreateSubmission-2019-05-05-xgboost.R`: feature creation, untuned `xgboost` with 50 trees, threshold moving
