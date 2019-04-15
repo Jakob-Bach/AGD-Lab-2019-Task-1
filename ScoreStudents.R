@@ -38,6 +38,6 @@ for (truthFileName in truthFiles) {
   if (any(prediction$fraud != 0 & prediction$fraud != 1)) {
     stop("Additional class labels.")
   }
-  score <- score + dmcScore(actual = groundTruth$fraud, prediction = prediction$fraud)
+  score <- score + dmcScore(actual = groundTruth$fraud, prediction = prediction$fraud) / nrow(groundTruth)
 }
-print(score / length(truthFiles))
+print(score / length(truthFiles), digits = 3)
