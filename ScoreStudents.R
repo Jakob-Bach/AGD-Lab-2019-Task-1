@@ -21,8 +21,8 @@ for (truthFileName in truthFiles) {
   if (length(predictionFileName) != 1) {
     stop(paste0("Zero or multiple matching prediction files found for \"", seedString, "\"."))
   }
-  groundTruth <- read.csv(truthFileName, sep = "+") # causes files with row names to fail later
-  prediction <- read.csv(predictionFileName)
+  groundTruth <- read.csv(truthFileName)
+  prediction <- read.csv(predictionFileName, sep = "+", quote = "") # causes files with row names or quoted values to fail later
   if (nrow(prediction) != nrow(groundTruth)) {
     stop("Number of observations wrong.")
   }
@@ -30,14 +30,14 @@ for (truthFileName in truthFiles) {
     stop("Number of columns wrong.")
   }
   if (colnames(prediction) != colnames(groundTruth)) {
-    stop("Column name wrong.")
+    stop("Column name wrong (quoted or wrong string).")
   }
   if (!is.numeric(prediction$fraud)) {
-    stop("Data type wrong.")
+    stop("Data type wrong (might be quoted).")
   }
   if (any(prediction$fraud != 0 & prediction$fraud != 1)) {
     stop("Additional class labels.")
   }
   score <- score + dmcScore(actual = groundTruth$fraud, prediction = prediction$fraud) / nrow(groundTruth)
 }
-print(score / length(truthFiles), digits = 3)
+print(round(score / length(truthFiles), digits = 3))
