@@ -23,3 +23,4 @@ Code to reproduce Slytherin submission scores - as presented in the joint meetin
 - `CreateSubmission-2019-04-21-DecisionTree.R`: feature creation, untuned `rpart`, threshold moving based on DMC score
 - `CreateSubmission-2019-04-28-DecisionTree2.R`: feature creation, untuned `xgboost` with 1 tree, threshold moving
 - `CreateSubmission-2019-05-05-xgboost.R`: feature creation, untuned `xgboost` with 50 trees, threshold moving
+- `CreateSubmission-2019-05-05-xgboost-tuned.R`: feature creation, `xgboost` with number of trees tuned, threshold moving
