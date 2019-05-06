@@ -17,6 +17,8 @@ The path to the prediction files has to be set for each scoring procedure (team 
 If the naming scheme of the prediction files or the path/naming scheme of the ground truth (as defined in `SplitForStudents.R`) changes, further adaptations might be necessary.
 No special R packages are required.
 
+`CompareTextFiles.R` can be used to determine if submitted prediction files and reproduced prediction files are equivalent.
+
 ## Slytherin submissions
 
 Code to reproduce Slytherin submission scores - as presented in the joint meetings - can be found in the directory `submission_scrips/`.
