@@ -19,6 +19,9 @@ No special R packages are required.
 
 `CompareTextFiles.R` can be used to determine if submitted prediction files and reproduced prediction files are equivalent.
 
+`CombinePredictions.R` takes prediction files from multiple directories and creates a joint prediction by majority voting.
+This can be used as heterogeneous ensemble.
+
 ## Slytherin submissions
 
 Code to reproduce Slytherin submission scores - as presented in the joint meetings - can be found in the directory `submission_scrips/`.
