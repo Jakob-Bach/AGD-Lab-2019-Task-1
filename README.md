@@ -10,7 +10,9 @@ No special R packages are required.
 
 ### Scoring
 
-The predictions of the students can be scored with the R script `ScoreStudents.R`.
+The predictions of the students can be scored with the R scripts `ScoreStudents*.R`.
+- `SplitForStudentsRepeatedHoldout.R` was used for all weeks except the last.
+- `SplitForStudentsCrossValidation.R` was used for the last week.
 The path to the prediction files has to be set for each scoring procedure (team and week).
 If the naming scheme of the prediction files or the path/naming scheme of the ground truth (as defined in `SplitForStudents.R`) changes, further adaptations might be necessary.
 No special R packages are required.
