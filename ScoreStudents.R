@@ -9,13 +9,13 @@ truthFiles <- list.files("data/", pattern = "split-.*-labels-.*\\.csv", full.nam
 if (length(truthFiles) == 0) {
   stop("The ground truth files seem to have disappeared.")
 }
-if (length(list.files(predictionBasePath, pattern = "\\.csv")) != length(truthFiles)) {
+if (length(list.files(predictionBasePath, pattern = "prediction-[0-9]+\\.csv$")) != length(truthFiles)) {
   stop("Number of prediction and ground truth files differ.")
 }
 
 score <- 0 # will be averaged over splits
 for (truthFileName in truthFiles) {
-  seedString <- regmatches(truthFileName, regexpr("[0-9]+.csv$", truthFileName))
+  seedString <- regmatches(truthFileName, regexpr("[0-9]+\\.csv$", truthFileName))
   predictionFileName <- list.files(predictionBasePath, full.names = TRUE,
       pattern = paste0(dateString, "-prediction-", seedString))
   if (length(predictionFileName) != 1) {
