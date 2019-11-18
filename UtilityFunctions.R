@@ -59,5 +59,7 @@ engineerFeatures <- function(dataset) {
   dataset[, QuantityMod_perItems := QuantityMod_total / Items_total]
   dataset[, Intervention_perItems := Intervention_total / Items_total]
   
+  # Add fix for NA values (e.g. - as in test data - if total value is zero, then div by zero)
+  dataset[is.na(dataset)] <- 0
   return(dataset)
 }
