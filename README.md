@@ -1,4 +1,8 @@
-# Task 1 (DMC) - Supervisor Repo
+# Analyzing Big Data Laboratory Course 2019 - Task 1 (DMC 2019)
+
+This is the supervisor repo for task 1 of the ["Analyzing Big Data Laboratory Course"](http://dbis.ipd.kit.edu/2670.php) at KIT in 2019.
+Students worked on the task of the [Data Mining Cup 2019](https://www.data-mining-cup.com/reviews/dmc-2019/).
+The repo provides files for course-internal splitting, scoring, and demo submissions for that.
 
 ## Course-Internal Test Data
 
