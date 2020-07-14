@@ -1,6 +1,6 @@
 # Analyzing Big Data Laboratory Course 2019 - Task 1 (DMC 2019)
 
-This is the supervisor repo for task 1 of the ["Analyzing Big Data Laboratory Course"](http://dbis.ipd.kit.edu/2670.php) at KIT in 2019.
+This is the supervisor ("Team Slytherin") repo for task 1 of the ["Analyzing Big Data Laboratory Course"](http://dbis.ipd.kit.edu/2670.php) at KIT in 2019.
 Students worked on the task of the [Data Mining Cup 2019](https://www.data-mining-cup.com/reviews/dmc-2019/).
 The repo provides files for course-internal splitting, scoring, and demo submissions for that.
 
@@ -26,9 +26,9 @@ No special R packages are required.
 `CombinePredictions.R` takes prediction files from multiple directories and creates a joint prediction by majority voting.
 This can be used as heterogeneous ensemble.
 
-## Slytherin submissions
+## Demo submissions
 
-Code to reproduce Slytherin submission scores - as presented in the joint meetings - can be found in the directory `submission_scrips/`.
+Code to reproduce simple demo submissions - as presented in the joint meetings - can be found in the directory `submission_scrips/`.
 
 - `CreateSubmission-2019-04-14-Baseline.R`: predict `0` (majority and less costly class) for each test object
 - `CreateSubmission-2019-04-21-DecisionTree.R`: feature creation, untuned `rpart`, threshold moving based on DMC score
